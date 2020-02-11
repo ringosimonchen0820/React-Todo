@@ -7,12 +7,12 @@ const toDo = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
-    completed: true
+    completed: false
   },
   {
     task: 'Bake Cookies',
     id: 1528817084358,
-    completed: true
+    completed: false
   }
 ];
 class App extends Component {
@@ -27,6 +27,25 @@ class App extends Component {
     };
   }
   
+  // * Toggle task 
+  // ! loop through the array and to find our specific element to toggle !completed
+  toggleTask = id => {
+    console.log(id);
+    this.setState({
+      todoList: this.state.todoList.map(item => {
+        if (item.id === id){
+          return{
+            ...item,
+            completed: !item.completed
+          }
+        } else{
+          return item;
+        }
+      })
+    });
+  }
+  
+  // * Add task
   addNewTask = typedInTask => {
     const newTodo = {
       task: typedInTask,
@@ -38,6 +57,7 @@ class App extends Component {
     });
   }
 
+  // * Clear finished tasks
   clearCompletedTodos = () => {
     this.setState({
       todoList: this.state.todoList.filter(item => !item.completed)
@@ -53,6 +73,7 @@ class App extends Component {
         </div>
         <TodoList
           todo={this.state.todoList}
+          toggleTask={this.toggleTask}
         />
         <button onClick={this.clearCompletedTodos}> Finished All Tasks </button>
       </div>
