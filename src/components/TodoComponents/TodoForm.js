@@ -34,7 +34,7 @@ class TodoForm extends Component {
                     onChange={this.handleChanges}
                 />
             </form>
-        )
+        );
     }
 }
 
