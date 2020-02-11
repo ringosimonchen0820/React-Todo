@@ -20,7 +20,8 @@ class TodoForm extends Component {
     // class property to submit form
     handleSubmit = event => {
         event.preventDefault();
-        //? this.setState({ newTodo: '' });
+        this.props.addNewTask(this.state.newTodo);
+        this.setState({ newTodo: '' });
     }
 
     render() {
@@ -33,6 +34,7 @@ class TodoForm extends Component {
                     value={this.state.newTodo}
                     onChange={this.handleChanges}
                 />
+                <button> Add Task </button>
             </form>
         );
     }

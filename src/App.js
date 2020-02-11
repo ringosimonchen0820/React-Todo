@@ -27,13 +27,23 @@ class App extends Component {
     };
   }
   
+  addNewTask = typedInTask => {
+    const newTodo = {
+      task: typedInTask,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      todoList: [...this.state.todoList, newTodo]
+    });
+  }
 
   render() {
     return (
       <div className="App">
         <div className="header">
           <h2>Welcome to your Todo App!</h2>
-          <TodoForm/>
+          <TodoForm addNewTask={this.addNewTask} />
         </div>
         <TodoList
           todo={this.state.todoList}
