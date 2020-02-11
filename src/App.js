@@ -7,12 +7,12 @@ const toDo = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
-    completed: false
+    completed: true
   },
   {
     task: 'Bake Cookies',
     id: 1528817084358,
-    completed: false
+    completed: true
   }
 ];
 class App extends Component {
@@ -38,6 +38,12 @@ class App extends Component {
     });
   }
 
+  clearCompletedTodos = () => {
+    this.setState({
+      todoList: this.state.todoList.filter(item => !item.completed)
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -48,6 +54,7 @@ class App extends Component {
         <TodoList
           todo={this.state.todoList}
         />
+        <button onClick={this.clearCompletedTodos}> Finished All Tasks </button>
       </div>
     );
   }
